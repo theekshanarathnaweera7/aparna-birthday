@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🎉</title><style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #ff9a9e, #fecfef);
+  overflow-x: hidden;
+}
+
+/* Loading Screen */
+#loader {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: #ffb6c1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader-heart {
+  width: 50px;
+  height: 50px;
+  background: red;
+  transform: rotate(45deg);
+  animation: beat 1s infinite;
+}
+
+.loader-heart::before,
+.loader-heart::after {
+  content: "";
+  width: 50px;
+  height: 50px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.loader-heart::before { top: -25px; left: 0; }
+.loader-heart::after { left: -25px; top: 0; }
+
+@keyframes beat {
+  0%, 100% { transform: rotate(45deg) scale(1); }
+  50% { transform: rotate(45deg) scale(1.2); }
+}
+
+.container {
+  padding: 20px;
+  text-align: center;
+  color: white;
+  animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(20px);} 
+  to {opacity:1; transform: translateY(0);} 
+}
+
+.section {
+  margin: 50px 0;
+  padding: 20px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.scroll-box {
+  height: 200px;
+  overflow-y: scroll;
+  padding: 10px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 15px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 15px;
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+.date {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  color: pink;
+  animation: floatUp 5s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(1); opacity:1; }
+  100% { transform: translateY(-10vh) scale(1.5); opacity:0; }
+}
+
+/* Music button */
+#musicBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ff69b4;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 50px;
+  color: white;
+  font-size: 14px;
+}
+
+</style></head>
+<body><div id="loader">
+  <div class="loader-heart"></div>
+</div><!-- Music --><audio id="bgMusic" loop playsinline>
+  <source src="https://files.catbox.moe/ewwem6.mp3" type="audio/mpeg">
+</audio><button id="musicBtn">🔊 Play Music</button>
+
+<div class="container" style="display:none;" id="mainContent">  <h1>🎂 Happy Birthday 💖</h1>
+  <div class="date">📅 2026 / 04 / 18</div>  <div class="section">
+    <h2>Special Message 💌</h2>
+    <p>
+      You are one of the most special people in my life 💕
+      May your birthday be filled with happiness, love, and beautiful moments ✨
+      I wish all your dreams come true and your smile never fades 💖
+    </p>
+  </div>  <div class="section">
+    <h2>Scroll Your Wishes 👇</h2>
+    <div class="scroll-box">
+      <p>🎉 Stay happy always!</p>
+      <p>💖 Keep smiling forever!</p>
+      <p>🌸 Dreams come true!</p>
+      <p>🎂 Enjoy every moment!</p>
+      <p>💫 Endless love for you!</p>
+      <p>🎁 Best birthday ever!</p>
+      <p>🌷 Stay blessed always!</p>
+    </div>
+  </div>  <div class="section">
+    <h2>From ❤️</h2>
+    <p>Aparna Sewmini</p>
+  </div>  <div class="section">
+    <h2>Memories 📸</h2>
+    <div class="gallery">
+      <img src="IMAGE_LINK_1">
+      <img src="IMAGE_LINK_2">
+      <img src="IMAGE_LINK_3">
+      <img src="IMAGE_LINK_4">
+      <img src="IMAGE_LINK_5">
+      <img src="IMAGE_LINK_6">
+      <img src="IMAGE_LINK_7">
+      <img src="IMAGE_LINK_8">
+      <img src="IMAGE_LINK_9">
+      <img src="IMAGE_LINK_10">
+    </div>
+  </div></div><script>
+window.onload = function() {
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+  }, 2500);
+
+  const music = document.getElementById("bgMusic");
+  const btn = document.getElementById("musicBtn");
+
+  // Try autoplay
+  music.play().catch(() => {
+    btn.style.display = 'block';
+  });
+
+  btn.addEventListener("click", () => {
+    music.play();
+    btn.innerText = "🎵 Playing";
+  });
+
+  // Floating hearts generator
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }, 500);
+};
+</script></body>
+</html>
